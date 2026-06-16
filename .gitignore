@@ -1,0 +1,6 @@
+node_modules/
+screenshot-*.png
+*.exe
+.env*
+.DS_Store
+Thumbs.db

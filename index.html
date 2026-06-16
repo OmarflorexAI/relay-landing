@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
+  <title>Relay — Agents for developers</title>
+  <meta name="description" content="The best way to build, deploy, and observe autonomous AI agents. Define an agent in code, ship it to production, and watch every run." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { corePlugins: { preflight: true }, theme: { extend: {
+      colors: { accent: '#38e0a0', emerald: '#38e0a0', violet: '#38e0a0' }
+    } } };
+  </script>
+
+  <!-- Spline web-component runtime (lets us disable zoom + set a fixed size) -->
+  <script type="module" src="https://cdn.jsdelivr.net/npm/@splinetool/viewer@1.9.82/build/spline-viewer.js"></script>
+
+  <link rel="stylesheet" href="assets/site.css?v=18" />
+</head>
+
+<body>
+  <!-- ============================ NAV ============================ -->
+  <header id="nav" class="nav">
+    <div class="container-x flex items-center justify-between h-16">
+      <div class="flex items-center gap-8">
+        <a href="#top" class="flex items-center gap-2">
+          <span class="grid place-items-center w-7 h-7 rounded-md" style="background:linear-gradient(140deg,#fff,#38e0a0)">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h10M4 12l4-4M4 12l4 4M20 6v12"/></svg>
+          </span>
+          <span class="text-[15px] font-semibold tracking-tight">Relay</span>
+        </a>
+        <nav class="hidden md:flex items-center gap-6">
+          <a href="#features" class="nav-link">Features</a>
+          <a href="#customers" class="nav-link">Customers</a>
+          <a href="#pricing" class="nav-link">Pricing</a>
+          <a href="#features" class="nav-link">Docs</a>
+          <a href="#dashboard" class="nav-link">Dashboard</a>
+        </nav>
+      </div>
+      <div class="hidden md:flex items-center gap-3">
+        <a href="#" data-open-form class="btn btn-white btn-sm">Get Started</a>
+      </div>
+      <button id="menuBtn" aria-label="Menu" aria-expanded="false" class="md:hidden btn btn-ghost btn-sm">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      </button>
+    </div>
+    <div id="mobileMenu" class="hidden md:hidden border-t border-white/5 bg-black/80 backdrop-blur">
+      <div class="container-x py-4 flex flex-col gap-1">
+        <a data-close-menu href="#features" class="nav-link py-2">Features</a>
+        <a data-close-menu href="#customers" class="nav-link py-2">Customers</a>
+        <a data-close-menu href="#pricing" class="nav-link py-2">Pricing</a>
+        <a data-close-menu href="#features" class="nav-link py-2">Docs</a>
+        <a data-close-menu href="#dashboard" class="nav-link py-2">Dashboard</a>
+        <a data-open-form href="#" class="btn btn-white btn-sm mt-2">Get Started</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <!-- ============================ HERO ============================ -->
+    <section class="hero sec-grid">
+      <div class="hero-beam"></div>
+      <div class="hero-streak"></div>
+      <div class="container-x relative z-10">
+        <div class="grid lg:grid-cols-[1fr_1.05fr] gap-10 items-center">
+          <div>
+            <a href="#features" class="hero-pill reveal mb-5">
+              <span class="hp-dot"></span>
+              Now in public beta
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </a>
+            <h1 class="hero-title font-serif reveal d1">Agents for<br />developers</h1>
+            <p class="sub mt-6 max-w-md reveal d2">
+              The best way to build, deploy, and observe autonomous AI agents.
+              Define an agent in code, ship it to production, and watch every run.
+            </p>
+            <div class="flex flex-wrap gap-3 mt-8 reveal d3">
+              <a href="#" data-open-form class="btn btn-white">Get Started <span class="btn-arrow" aria-hidden="true">→</span></a>
+              <a href="#features" class="btn btn-ghost">Documentation</a>
+            </div>
+          </div>
+
+          <!-- Interactive 3D Rubik's cube — drag to rotate, zoom disabled -->
+          <div class="hero-spline reveal d2">
+            <spline-viewer
+              url="https://prod.spline.design/Ju9LlRNAX-KightO/scene.splinecode"
+              loading-anim-type="spinner-small-dark"></spline-viewer>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================ LOGO CLOUD ============================ -->
+    <section id="customers" class="pb-16 sec-grid">
+      <div class="container-x">
+        <p class="text-center sub text-sm mb-9 reveal">Teams of all sizes build agents on Relay</p>
+        <div class="marquee-mask overflow-hidden reveal">
+          <div class="marquee logo-row">
+            <span class="logo"><img class="logo-ic" src="assets/logos/github.svg" alt="" />GitHub</span>
+            <span class="logo"><img class="logo-ic" src="assets/logos/google.svg" alt="" />Google</span>
+            <span class="logo"><img class="logo-ic" src="assets/logos/linkedin.svg" alt="" />LinkedIn</span>
+            <span class="logo"><img class="logo-ic" src="assets/logos/facebook.svg" alt="" />Facebook</span>
+            <span class="logo"><img class="logo-ic" src="assets/logos/whatsapp.svg" alt="" />WhatsApp</span>
+            <span class="logo"><img class="logo-ic" src="assets/logos/telegram.svg" alt="" />Telegram</span>
+            <span class="logo"><img class="logo-ic" src="assets/logos/stripe.svg" alt="" />Stripe</span>
+            <span class="logo"><img class="logo-ic" src="assets/logos/figma.svg" alt="" />Figma</span>
+            <span class="logo" aria-hidden="true"><img class="logo-ic" src="assets/logos/github.svg" alt="" />GitHub</span>
+            <span class="logo" aria-hidden="true"><img class="logo-ic" src="assets/logos/google.svg" alt="" />Google</span>
+            <span class="logo" aria-hidden="true"><img class="logo-ic" src="assets/logos/linkedin.svg" alt="" />LinkedIn</span>
+            <span class="logo" aria-hidden="true"><img class="logo-ic" src="assets/logos/facebook.svg" alt="" />Facebook</span>
+            <span class="logo" aria-hidden="true"><img class="logo-ic" src="assets/logos/whatsapp.svg" alt="" />WhatsApp</span>
+            <span class="logo" aria-hidden="true"><img class="logo-ic" src="assets/logos/telegram.svg" alt="" />Telegram</span>
+            <span class="logo" aria-hidden="true"><img class="logo-ic" src="assets/logos/stripe.svg" alt="" />Stripe</span>
+            <span class="logo" aria-hidden="true"><img class="logo-ic" src="assets/logos/figma.svg" alt="" />Figma</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================ INTEGRATE ============================ -->
+    <section id="features" class="section sec-grid">
+      <div class="container-x">
+        <div class="text-center mb-10">
+          <p class="eyebrow reveal mb-3">Quickstart</p>
+          <h2 class="h-section reveal">Integrate <span class="text-accent">this weekend</span></h2>
+          <p class="sub mt-3 reveal d1 max-w-lg mx-auto">A simple, elegant interface so you can start shipping agents in minutes. With first-class SDKs for your favorite languages.</p>
+        </div>
+
+        <div class="max-w-3xl mx-auto window reveal d1" data-tabs>
+          <div class="window-bar">
+            <span class="dot" style="background:#ff5f57"></span>
+            <span class="dot" style="background:#febc2e"></span>
+            <span class="dot" style="background:#28c840"></span>
+            <div class="flex gap-1 ml-4">
+              <span class="tab active" data-tab="ts">TypeScript</span>
+              <span class="tab" data-tab="py">Python</span>
+              <span class="tab" data-tab="curl">cURL</span>
+            </div>
+          </div>
+          <div data-pane="ts" class="code">
+<span class="ln">1</span><span class="tok-key">import</span> { Relay } <span class="tok-key">from</span> <span class="tok-str">'relay'</span>;<br/>
+<span class="ln">2</span><br/>
+<span class="ln">3</span><span class="tok-key">const</span> relay = <span class="tok-key">new</span> <span class="tok-fn">Relay</span>(<span class="tok-str">'re_xxxxxxxx'</span>);<br/>
+<span class="ln">4</span><br/>
+<span class="ln">5</span><span class="tok-key">await</span> relay.agents.<span class="tok-fn">run</span>({<br/>
+<span class="ln">6</span>&nbsp;&nbsp;agent: <span class="tok-str">'support-triage'</span>,<br/>
+<span class="ln">7</span>&nbsp;&nbsp;goal: <span class="tok-str">'Resolve ticket #4821 and reply'</span>,<br/>
+<span class="ln">8</span>&nbsp;&nbsp;tools: [<span class="tok-str">'zendesk'</span>, <span class="tok-str">'slack'</span>],<br/>
+<span class="ln">9</span>&nbsp;&nbsp;maxSteps: <span class="tok-num">12</span>,<br/>
+<span class="ln">10</span>});
+          </div>
+          <div data-pane="py" class="code hidden">
+<span class="ln">1</span><span class="tok-key">import</span> relay<br/>
+<span class="ln">2</span><br/>
+<span class="ln">3</span>client = relay.<span class="tok-fn">Relay</span>(<span class="tok-str">'re_xxxxxxxx'</span>)<br/>
+<span class="ln">4</span><br/>
+<span class="ln">5</span>client.agents.<span class="tok-fn">run</span>(<br/>
+<span class="ln">6</span>&nbsp;&nbsp;agent=<span class="tok-str">'support-triage'</span>,<br/>
+<span class="ln">7</span>&nbsp;&nbsp;goal=<span class="tok-str">'Resolve ticket #4821 and reply'</span>,<br/>
+<span class="ln">8</span>&nbsp;&nbsp;tools=[<span class="tok-str">'zendesk'</span>, <span class="tok-str">'slack'</span>],<br/>
+<span class="ln">9</span>&nbsp;&nbsp;max_steps=<span class="tok-num">12</span>,<br/>
+<span class="ln">10</span>)
+          </div>
+          <div data-pane="curl" class="code hidden">
+<span class="ln">1</span><span class="tok-fn">curl</span> -X POST https://api.relay.dev/v1/runs \<br/>
+<span class="ln">2</span>&nbsp;&nbsp;-H <span class="tok-str">"Authorization: Bearer re_xxxxxxxx"</span> \<br/>
+<span class="ln">3</span>&nbsp;&nbsp;-H <span class="tok-str">"Content-Type: application/json"</span> \<br/>
+<span class="ln">4</span>&nbsp;&nbsp;-d <span class="tok-str">'{ "agent": "support-triage",</span><br/>
+<span class="ln">5</span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="tok-str">"goal": "Resolve ticket #4821" }'</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================ FIRST-CLASS DX ============================ -->
+    <section class="section pt-0 sec-grid">
+      <div class="container-x">
+        <div class="mb-10">
+          <h2 class="h-section reveal">First-class<br />developer experience</h2>
+          <p class="sub mt-3 reveal d1 max-w-lg">We are a team of engineers who love building tools for other engineers. Our goal is to create the platform we've always wished we had — for agents.</p>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-5">
+          <div class="card p-6 reveal">
+            <div class="window mb-5">
+              <div class="window-bar"><span class="text-[11px] font-mono text-emerald">● sandbox</span><span class="ml-auto text-[11px] font-mono" style="color:var(--muted-2)">replay enabled</span></div>
+              <div class="code text-[.72rem]">
+<span class="tok-com"># dry-run: no real tool calls</span><br/>
+relay run support-triage <span class="tok-attr">--sandbox</span><br/>
+<span class="tok-str">✓</span> planned 7 steps<br/>
+<span class="tok-str">✓</span> simulated zendesk.reply()<br/>
+<span class="tok-str">✓</span> simulated slack.notify()
+              </div>
+            </div>
+            <h3 class="text-[15px] font-medium mb-1.5">Sandbox runs</h3>
+            <p class="feat p-0"><span class="sub text-sm">Execute any agent in a fully simulated environment. No real side-effects, every step replayable, before you ship to production.</span></p>
+            <a href="#features" class="nav-link text-sm inline-block mt-3">Learn more →</a>
+          </div>
+
+          <div class="card p-6 reveal d1">
+            <div class="window mb-5">
+              <div class="window-bar"><span class="text-[11px] font-mono text-violet">⬡ tools</span><span class="ml-auto text-[11px] font-mono" style="color:var(--muted-2)">12 connected</span></div>
+              <div class="p-4 grid grid-cols-3 gap-2">
+                <span class="glass rounded-lg py-2 text-center text-[11px] font-mono">slack</span>
+                <span class="glass rounded-lg py-2 text-center text-[11px] font-mono">github</span>
+                <span class="glass rounded-lg py-2 text-center text-[11px] font-mono">stripe</span>
+                <span class="glass rounded-lg py-2 text-center text-[11px] font-mono">notion</span>
+                <span class="glass rounded-lg py-2 text-center text-[11px] font-mono">postgres</span>
+                <span class="glass rounded-lg py-2 text-center text-[11px] font-mono">+ custom</span>
+              </div>
+            </div>
+            <h3 class="text-[15px] font-medium mb-1.5">Composable tools</h3>
+            <p class="feat p-0"><span class="sub text-sm">Give agents typed, permissioned access to any API. Compose built-in connectors or register your own internal tools in a few lines.</span></p>
+            <a href="#features" class="nav-link text-sm inline-block mt-3">Learn more →</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================ GO BEYOND AUTOMATION ============================ -->
+    <section class="section pt-0 sec-grid">
+      <div class="container-x">
+        <div class="mb-10">
+          <p class="eyebrow reveal mb-3">Observability</p>
+          <h2 class="h-section reveal">Go beyond automation</h2>
+          <p class="sub mt-3 reveal d1 max-w-lg">Memory, observability, and analytics in one place. Understand exactly what your agents did, and why.</p>
+        </div>
+        <div class="grid md:grid-cols-2 gap-5">
+          <div class="card p-6 reveal">
+            <div class="window mb-5">
+              <div class="p-5 space-y-2">
+                <div class="flex items-center justify-between"><span class="text-xs font-mono" style="color:var(--muted)">memory</span><span class="pill text-[10px]">vector + episodic</span></div>
+                <div class="glass rounded-lg p-3 text-xs"><span style="color:var(--muted-2)">recalled:</span> "Customer prefers email over phone"</div>
+                <div class="glass rounded-lg p-3 text-xs"><span style="color:var(--muted-2)">recalled:</span> "Refund policy = 30 days"</div>
+              </div>
+            </div>
+            <h3 class="text-[15px] font-medium mb-1.5">Agent memory</h3>
+            <p><span class="sub text-sm">Agents remember past runs, user preferences, and outcomes — so every interaction is more informed than the last.</span></p>
+          </div>
+
+          <div class="card p-6 reveal d1">
+            <div class="window mb-5 glow-chart">
+              <div class="p-5">
+                <div class="flex items-baseline justify-between mb-3">
+                  <div><div class="text-[11px] font-mono" style="color:var(--muted)">resolution rate</div><div class="text-2xl font-semibold">98<span class="text-base align-top">%</span></div></div>
+                  <div class="text-right"><div class="text-[11px] font-mono" style="color:var(--muted)">avg steps</div><div class="text-2xl font-semibold text-emerald">4.1</div></div>
+                </div>
+                <div class="chart" data-h="70" data-unit="%" style="height:64px"
+                     data-points="71,74,72,80,78,85,83,90,94,96"></div>
+              </div>
+            </div>
+            <h3 class="text-[15px] font-medium mb-1.5">Run analytics</h3>
+            <p><span class="sub text-sm">Track resolution rate, step counts, tool usage, cost, and latency across every agent and environment in real time.</span></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================ PRICING ============================ -->
+    <section id="pricing" class="section pt-0 sec-grid">
+      <div class="container-x">
+        <div class="text-center mb-12 max-w-xl mx-auto">
+          <p class="eyebrow reveal mb-3">Plans</p>
+          <h2 class="h-section reveal">Simple, scalable pricing</h2>
+          <p class="sub mt-3 reveal d1">Start free for yourself. Upgrade when your team needs more runs, longer retention, and enterprise control.</p>
+        </div>
+
+        <div class="price-grid">
+          <!-- Free -->
+          <div class="price-card reveal reveal-blur">
+            <div class="price-head">
+              <span class="price-tier">Free</span>
+              <span class="price-amt">$0<span class="price-per">/mo</span></span>
+              <span class="price-best">Best for 1–5 developers</span>
+            </div>
+            <ul class="price-benefits">
+              <li class="ben on"><span class="ben-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>One workspace</li>
+              <li class="ben on"><span class="ben-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>1,000 agent runs / mo</li>
+              <li class="ben on"><span class="ben-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>Community support</li>
+              <li class="ben off"><span class="ben-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg></span>1-day run retention</li>
+              <li class="ben off"><span class="ben-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg></span>Custom guardrails</li>
+              <li class="ben off"><span class="ben-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg></span>SSO &amp; audit logs</li>
+            </ul>
+            <a href="#" data-open-form class="btn btn-ghost price-btn">Get started free</a>
+          </div>
+
+          <!-- Pro (featured) -->
+          <div class="price-card featured reveal reveal-blur d1">
+            <span class="price-badge">Most popular</span>
+            <div class="price-head">
+              <span class="price-tier">Pro</span>
+              <span class="price-amt">$79<span class="price-per">/mo</span></span>
+              <span class="price-best">Best for 5–50 developers</span>
+            </div>
+            <ul class="price-benefits">
+              <li class="ben on"><span class="ben-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>Five workspaces</li>
+              <li class="ben on"><span class="ben-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>100k agent runs / mo</li>
+              <li class="ben on"><span class="ben-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>Email support</li>
+              <li class="ben on"><span class="ben-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>7-day run retention</li>
+              <li class="ben on"><span class="ben-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>Custom guardrails</li>
+              <li class="ben off"><span class="ben-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg></span>SSO &amp; audit logs</li>
+            </ul>
+            <a href="#" data-open-form class="btn btn-white price-btn">Start 14-day trial</a>
+          </div>
+
+          <!-- Enterprise -->
+          <div class="price-card reveal reveal-blur d2">
+            <div class="price-head">
+              <span class="price-tier">Enterprise</span>
+              <span class="price-amt price-amt-sm">Contact us</span>
+              <span class="price-best">Best for 50+ developers</span>
+            </div>
+            <ul class="price-benefits">
+              <li class="ben on"><span class="ben-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>Unlimited workspaces</li>
+              <li class="ben on"><span class="ben-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>Unlimited agent runs</li>
+              <li class="ben on"><span class="ben-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>Priority support &amp; SLA</li>
+              <li class="ben on"><span class="ben-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>30-day run retention</li>
+              <li class="ben on"><span class="ben-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>Custom guardrails</li>
+              <li class="ben on"><span class="ben-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>SSO &amp; audit logs</li>
+            </ul>
+            <a href="#" data-open-form class="btn btn-ghost price-btn">Contact sales</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================ TESTIMONIAL (placeholder) ============================ -->
+    <section class="section pt-0 fade-to-black sec-grid">
+      <div class="container-x text-center wrap-narrow mx-auto">
+        <div class="reveal">
+          <svg class="mx-auto mb-6" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--muted)" stroke-width="1.5"><path d="M4 6h4v6a4 4 0 0 1-4 4M16 6h4v6a4 4 0 0 1-4 4"/></svg>
+          <p class="font-serif text-2xl md:text-[1.7rem] leading-snug text-white">"Relay is transforming how we build agents. Simple interface, real observability, and guardrails we actually trust in production."</p>
+          <div class="flex justify-center mt-8">
+            <div class="glass-bubble pl-2 pr-5 py-2">
+              <span class="avatar-glass w-9 h-9 text-xs">JM</span>
+              <div class="text-left"><div class="text-sm font-medium leading-tight">Jordan Mercer</div><div class="text-xs" style="color:var(--muted)">Staff Engineer · Northwind</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================ DASHBOARD / CONTROL ============================ -->
+    <section id="dashboard" class="section pt-0 sec-grid">
+      <div class="container-x text-center">
+        <p class="eyebrow reveal mb-3">Control center</p>
+        <h2 class="h-section reveal">Everything in your control</h2>
+        <p class="sub mt-3 reveal d1 max-w-lg mx-auto">All the features you need to manage, monitor, and scale your fleet of agents — with deep logs, alerts, and granular controls.</p>
+
+        <div class="window max-w-4xl mx-auto mt-10 reveal d1 text-left" data-tabs>
+          <div class="window-bar">
+            <span class="dot" style="background:#ff5f57"></span><span class="dot" style="background:#febc2e"></span><span class="dot" style="background:#28c840"></span>
+            <div class="flex gap-1 ml-4 text-[11px]">
+              <span class="tab active" data-tab="overview">Overview</span>
+              <span class="tab" data-tab="runs">Runs</span>
+              <span class="tab" data-tab="obs">Observability</span>
+            </div>
+          </div>
+          <div class="grid md:grid-cols-[180px_1fr]" style="background:var(--bg-1)">
+            <div class="hidden md:block border-r p-4 space-y-2 text-[12px]" style="border-color:var(--line-soft);color:var(--muted)">
+              <div class="text-white">Dashboard</div><div>Agents</div><div>Runs</div><div>Tools</div><div>Memory</div><div>Logs</div><div>Settings</div>
+            </div>
+
+            <!-- Overview -->
+            <div data-pane="overview" class="p-6">
+              <div class="grid grid-cols-3 gap-4 mb-6">
+                <div><div class="text-[11px] font-mono" style="color:var(--muted)">Runs today</div><div class="text-2xl font-semibold" data-count="29490">0</div></div>
+                <div><div class="text-[11px] font-mono" style="color:var(--muted)">Resolution</div><div class="text-2xl font-semibold text-emerald" data-count="98" data-suffix="%">0</div></div>
+                <div><div class="text-[11px] font-mono" style="color:var(--muted)">Avg cost</div><div class="text-2xl font-semibold" data-count="0.04" data-dec="1" data-suffix="¢">0</div></div>
+              </div>
+              <div class="chart" data-h="120" data-unit=" runs" style="height:128px"
+                   data-points="180,210,240,220,300,280,360,340,420,460,440,510"></div>
+            </div>
+
+            <!-- Runs -->
+            <div data-pane="runs" class="p-6 hidden">
+              <div class="grid grid-cols-3 gap-4 mb-6">
+                <div><div class="text-[11px] font-mono" style="color:var(--muted)">Total runs</div><div class="text-2xl font-semibold" data-count="1284903">0</div></div>
+                <div><div class="text-[11px] font-mono" style="color:var(--muted)">Succeeded</div><div class="text-2xl font-semibold text-emerald" data-count="98.7" data-dec="1" data-suffix="%">0</div></div>
+                <div><div class="text-[11px] font-mono" style="color:var(--muted)">Failed</div><div class="text-2xl font-semibold" data-count="1.3" data-dec="1" data-suffix="%">0</div></div>
+              </div>
+              <div class="chart" data-h="120" data-unit=" runs" style="height:128px"
+                   data-points="520,480,560,610,540,620,700,660,740,690,780,820"></div>
+            </div>
+
+            <!-- Observability -->
+            <div data-pane="obs" class="p-6 hidden">
+              <div class="grid grid-cols-3 gap-4 mb-6">
+                <div><div class="text-[11px] font-mono" style="color:var(--muted)">p50 latency</div><div class="text-2xl font-semibold" data-count="840" data-suffix="ms">0</div></div>
+                <div><div class="text-[11px] font-mono" style="color:var(--muted)">Error rate</div><div class="text-2xl font-semibold text-emerald" data-count="0.21" data-dec="1" data-suffix="%">0</div></div>
+                <div><div class="text-[11px] font-mono" style="color:var(--muted)">Tokens / run</div><div class="text-2xl font-semibold" data-count="3120">0</div></div>
+              </div>
+              <div class="chart" data-h="120" data-unit="ms" style="height:128px"
+                   data-points="1200,1100,980,1040,900,950,860,890,820,840,800,810"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================ TESTIMONIALS ROW (placeholder) ============================ -->
+    <section class="section pt-0 sec-grid">
+      <div class="container-x">
+        <h2 class="h-section text-center reveal mb-3">Beyond expectations</h2>
+        <p class="sub text-center reveal d1 mb-10 text-sm">Illustrative testimonials with placeholder people — swap in real, attributed quotes before launch.</p>
+        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div class="card t-card p-5 reveal"><p class="t-text text-sm">"We replaced 4 brittle cron jobs with one Relay agent. It just handles the edge cases now."</p><div class="t-foot flex items-center gap-2.5 mt-4"><span class="avatar-glass w-8 h-8 text-[11px]">AR</span><div><div class="text-xs font-medium leading-tight">Alex Rivera</div><div class="text-[11px]" style="color:var(--muted)">Platform Lead · Vertex</div></div></div></div>
+          <div class="card t-card p-5 reveal d1"><p class="t-text text-sm">"The run traces alone are worth it. I can finally see why an agent did what it did."</p><div class="t-foot flex items-center gap-2.5 mt-4"><span class="avatar-glass w-8 h-8 text-[11px]">PN</span><div><div class="text-xs font-medium leading-tight">Priya Nair</div><div class="text-[11px]" style="color:var(--muted)">Eng Manager · Lumen</div></div></div></div>
+          <div class="card t-card p-5 reveal d2"><p class="t-text text-sm">"Shipped our first production agent in a weekend. The DX feels like the early days of great APIs."</p><div class="t-foot flex items-center gap-2.5 mt-4"><span class="avatar-glass w-8 h-8 text-[11px]">SO</span><div><div class="text-xs font-medium leading-tight">Sam Okafor</div><div class="text-[11px]" style="color:var(--muted)">Founder · Mainline</div></div></div></div>
+          <div class="card t-card p-5 reveal d3"><p class="t-text text-sm">"Guardrails and approvals made our security team comfortable shipping agents at all."</p><div class="t-foot flex items-center gap-2.5 mt-4"><span class="avatar-glass w-8 h-8 text-[11px]">DL</span><div><div class="text-xs font-medium leading-tight">Dana Lee</div><div class="text-[11px]" style="color:var(--muted)">Security Eng · Cobalt</div></div></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================ FINAL CTA ============================ -->
+    <section id="contact" class="section fade-to-black sec-grid">
+      <div class="container-x text-center">
+        <h2 class="font-serif text-white reveal" style="font-size:clamp(2.4rem,6vw,4rem); line-height:1.02;">Agents, reimagined.<br />Available today.</h2>
+        <div class="flex justify-center gap-3 mt-8 reveal d1">
+          <a href="#" data-open-form class="btn btn-white">Get Started <span class="btn-arrow" aria-hidden="true">→</span></a>
+          <a href="#" data-open-form class="btn btn-ghost">Contact us</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============================ FOOTER ============================ -->
+  <footer class="site-footer">
+    <div class="container-x">
+      <div class="footer-grid">
+        <!-- Brand + social -->
+        <div class="footer-brand">
+          <a href="#top" class="flex items-center gap-2">
+            <span class="grid place-items-center w-7 h-7 rounded-md" style="background:linear-gradient(140deg,#fff,#38e0a0)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h10M4 12l4-4M4 12l4 4M20 6v12"/></svg></span>
+            <span class="text-[15px] font-semibold tracking-tight">Relay</span>
+          </a>
+          <p class="footer-tag">The fastest way to build, deploy, and observe autonomous AI agents — from your first run to your millionth.</p>
+          <div class="footer-social">
+            <a href="#" aria-label="GitHub" class="soc"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg></a>
+            <a href="#" aria-label="LinkedIn" class="soc"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.225 0z"/></svg></a>
+            <a href="#" aria-label="Telegram" class="soc"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg></a>
+            <a href="#" aria-label="WhatsApp" class="soc"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg></a>
+            <a href="#" aria-label="Facebook" class="soc"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+          </div>
+        </div>
+
+        <!-- Link columns -->
+        <div class="foot-col">
+          <h5>Product</h5>
+          <a href="#features">Features</a>
+          <a href="#pricing">Pricing</a>
+          <a href="#dashboard">Dashboard</a>
+          <a href="#customers">Customers</a>
+        </div>
+        <div class="foot-col">
+          <h5>Developers</h5>
+          <a href="#features">Documentation</a>
+          <a href="#features">SDKs</a>
+          <a href="#features">API reference</a>
+          <a href="#features">Changelog</a>
+        </div>
+        <div class="foot-col">
+          <h5>Company</h5>
+          <a href="#" data-open-form>Contact</a>
+          <a href="#">About</a>
+          <a href="#">Careers</a>
+          <a href="#">Blog</a>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>© <span id="year"></span> Relay · demo brand</p>
+        <div class="footer-bottom-links">
+          <span class="footer-status"><span class="live-dot"></span>All systems operational</span>
+          <a href="#">Privacy</a>
+          <a href="#">Terms</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ============================ FORM MODAL ============================ -->
+  <div id="formModal" class="modal-overlay" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Get started with Relay">
+    <div class="modal rounded-2xl p-6">
+      <div class="flex items-center justify-between mb-1">
+        <h3 class="text-lg font-medium">Get started with Relay</h3>
+        <button data-close-modal aria-label="Close" class="btn btn-ghost btn-sm" style="padding:.3rem .6rem">✕</button>
+      </div>
+      <p class="text-sm mb-5" style="color:var(--muted)">Tell us what you'd hand off and we'll show you a working agent.</p>
+      <form id="contactForm" novalidate>
+        <div class="grid sm:grid-cols-2 gap-3 mb-3">
+          <input name="name" type="text" placeholder="Name" class="bg-white/5 border border-white/10 rounded-lg px-3 py-2.5 text-sm outline-none focus:border-accent transition w-full" />
+          <input name="email" type="email" placeholder="Work email" required class="bg-white/5 border border-white/10 rounded-lg px-3 py-2.5 text-sm outline-none focus:border-accent transition w-full" />
+        </div>
+        <textarea name="message" rows="2" placeholder="What would you hand off to an agent?" class="bg-white/5 border border-white/10 rounded-lg px-3 py-2.5 text-sm outline-none focus:border-accent transition w-full resize-none mb-3"></textarea>
+        <button type="submit" class="btn btn-white w-full">Request access</button>
+        <p id="formNote" class="text-xs text-center mt-3" style="color:var(--muted)"></p>
+      </form>
+    </div>
+  </div>
+
+  <script src="assets/app.js?v=18"></script>
+</body>
+</html>

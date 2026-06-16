@@ -1,0 +1,12 @@
+{
+  "name": "relay-site",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Relay — premium dark AI-agents landing (static, no build step)",
+  "scripts": {
+    "screenshot": "node screenshot.js"
+  },
+  "devDependencies": {
+    "puppeteer": "^23.0.0"
+  }
+}
