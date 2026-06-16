@@ -1,0 +1,14 @@
+# Files NOT to publish as static assets (gitignore-style).
+# Keeps node_modules and dev tooling out of the deployed site.
+node_modules
+.git
+.github
+.gitignore
+.assetsignore
+wrangler.jsonc
+package.json
+package-lock.json
+screenshot.js
+screenshot-*.png
+CLAUDE.md
+README.md

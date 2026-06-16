@@ -1,0 +1,10 @@
+{
+  // Cloudflare Workers — static assets only (no Worker script).
+  // This is a no-build static site; we just serve the files in the repo root.
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "relay-landing",
+  "compatibility_date": "2026-06-16",
+  "assets": {
+    "directory": "."
+  }
+}
